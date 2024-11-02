@@ -19,7 +19,7 @@ ynh_setup_source --dest_dir="$install_dir"
 
 # Adapt absolute path to relative path in order to allow YNH install in subdir
 indexhtml="$install_dir/index.html"
-indexjs=$(du -hs "$install_dir/assets/*" | sort -hr | cut -f2 | grep -m1 "^index-.*js$") #heavier file whose filename starts with "index-" and ends with ".js". What is in between is a different random string at each new build
+indexjs=$(du -hs $install_dir/assets/* | sort -hr | cut -f2 | grep -m1 index-.*js$) #heavier file whose filename contains "index-" and ends with ".js". What is in between is a different random string at each new build
 ynh_replace_special_string --match_string="/assets" --replace_string="./assets" --target_file=$indexhtml
 ynh_replace_special_string --match_string="/manifest.json" --replace_string="./manifest.json" --target_file=$indexhtml
 ynh_replace_string --match_string="cinny.in/?" --replace_string="$domain$path" --target_file=$indexhtml
